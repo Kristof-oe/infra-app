@@ -17,7 +17,7 @@ resource "kubernetes_namespace_v1" "hello" {
 # Step 4, once the cluster exists:
 resource "kubernetes_manifest" "deployment" {
   for_each = fileset("${path.root}/kubernet", "*.{yaml,yml}")
-  
+
   manifest   = yamldecode(file("${path.root}/kubernet/${each.value}"))
   depends_on = [kubernetes_namespace_v1.hello]
 }
