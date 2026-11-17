@@ -37,13 +37,13 @@ resource "kubectl_manifest" "desploya" {
 resource "kubectl_manifest" "deployb" {
   depends_on = [kubernetes_namespace_v1.hello]
 
-  yaml_body = file("${path.root}/kubernet/sa/sas.yaml")
+  yaml_body = file("${path.root}/kubernet/sb/sbd.yaml")
 }
 
 resource "kubectl_manifest" "sa" {
   depends_on = [kubernetes_namespace_v1.hello]
 
-  yaml_body = file("${path.root}/kubernet/sb/sbd.yaml")
+  yaml_body = file("${path.root}/kubernet/sa/sas.yaml")
 }
 
 
