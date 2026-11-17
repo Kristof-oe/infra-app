@@ -9,8 +9,10 @@ resource "aws_eks_node_group" "this" {
   node_role_arn   = aws_iam_role.node.arn
   subnet_ids      = each.value.subnets
 
-  ami_type       = "AL2023_ARM_64_STANDARD"
-  instance_types = ["t4g.medium"]
+  # ami_type       = "AL2023_ARM_64_STANDARD"
+  ami_type = "AL2023_x86_64_STANDARD"
+  # instance_types = ["t4g.medium"]
+  instance_types = ["t3.medium"]
   capacity_type  = "ON_DEMAND"
   disk_size      = 20
 
