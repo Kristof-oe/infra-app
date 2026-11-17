@@ -23,10 +23,10 @@ module "eks" {
   #   subnets         = module.vpc.all_subnet_list
   subnets = [for sn in module.vpc.all_subnet_list : sn.val.id if contains(var.eks_cluster.subnets, sn.name)]
   # configure_kubectl = each.value.configure_kubectl
-  node_group = [ for i in var.node_group: {
-    name = i.name
+  node_group = [for i in var.node_group : {
+    name    = i.name
     subnets = [for sn in module.vpc.all_subnet_list : sn.val.id if contains(i.subnets, sn.name)]
-}] 
+  }]
   private_subnets = module.vpc.private_subnets
   aws_region      = var.region
   repo            = module.ecr.image_urls
