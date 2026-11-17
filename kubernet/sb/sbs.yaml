@@ -6,7 +6,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    app: serviceB
+    app: serviceb
   ports:
   - port: 8080
     targetPort: 8080

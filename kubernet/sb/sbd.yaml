@@ -7,11 +7,11 @@ spec:
   replicas: 3
   selector:
     matchLabels:
-      app: serviceB
+      app: serviceb
   template:
     metadata:
       labels:
-        app: serviceB
+        app: serviceb
     spec:
       containers:
       - name: sb

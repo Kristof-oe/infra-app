@@ -19,7 +19,7 @@ spec:
         path: "/api/sa"
         backend:
           service:
-            name: serviceA
+            name: servicea
             port: 
               number: 8080
 
@@ -29,7 +29,7 @@ spec:
         path: "/api/sb"
         backend:
           service:
-            name: serviceB
+            name: serviceb
             port: 
               number: 8080
 
