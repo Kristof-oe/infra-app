@@ -14,10 +14,42 @@ resource "kubernetes_namespace_v1" "hello" {
   }
 }
 
-# Step 4, once the cluster exists:
-resource "kubernetes_manifest" "deployment" {
-  for_each = fileset("${path.module}/kubernet", "**/*.{yaml,yml}")
+# # Step 4, once the cluster exists:
+# resource "kubernetes_manifest" "deployment" {
+#   for_each = fileset("${path.module}/kubernet", "**/*.{yaml,yml}")
 
-  manifest   = yamldecode(file("${path.module}/kubernet/${each.value}"))
-  depends_on = [kubernetes_namespace_v1.hello]
+#   manifest   = yamldecode(file("${path.module}/kubernet/${each.value}"))
+#   depends_on = [kubernetes_namespace_v1.hello]
+# }
+
+resource "kubectl_manifest" "load" {
+  depends_on = [ kubernetes_namespace_v1.hello ]
+
+  yaml_body ="${path.module}/kubernet/load/ingress.yaml"
 }
+
+resource "kubectl_manifest" "desploya" {
+  depends_on = [ kubernetes_namespace_v1.hello ]
+
+  yaml_body ="${path.module}/kubernet/sa/sad.yaml"
+}
+
+resource "kubectl_manifest" "deployb" {
+  depends_on = [ kubernetes_namespace_v1.hello ]
+
+  yaml_body ="${path.module}/kubernet/sa/sas.yaml"
+}
+
+resource "kubectl_manifest" "sa" {
+  depends_on = [ kubernetes_namespace_v1.hello ]
+
+  yaml_body ="${path.module}/kubernet/sb/sbd.yaml"
+}
+
+
+resource "kubectl_manifest" "sb" {
+  depends_on = [ kubernetes_namespace_v1.hello ]
+
+  yaml_body ="${path.module}/kubernet/sb/sbs.yaml"
+}
+
