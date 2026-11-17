@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sa
+  namespace: app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: serviceA
+  template:
+    metadata:
+      labels:
+        app: serviceA
+    spec:
+      containers:
+      - name: sa
+        # image: ${ecr_image_url}
+        image: 362099375729.dkr.ecr.eu-central-1.amazonaws.com/sa:6c2541c5b7954a88e677ee06f8f82dae77e40231
+        ports:
+        - containerPort: 8080
+
