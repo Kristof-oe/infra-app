@@ -1,0 +1,35 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: loadingress
+  annotations:
+    alb.ingress.kubernetes.io/group.name: shared-alb
+    kubernets.io/ingress.class : alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/healthcheck-path: /health
+  labels:
+    app.kubernetes.io/name: app
+spec:
+  ingressClassName: alb
+  rules:
+  - http:
+      paths:
+      - pathType: Prefix
+        path: "/api/sa"
+        backend:
+          service:
+            name: servicea
+            port: 
+              number: 8080
+
+  - http:
+      paths:
+      - pathType: Prefix
+        path: "/api/sb"
+        backend:
+          service:
+            name: serviceb
+            port: 
+              number: 8080
+
