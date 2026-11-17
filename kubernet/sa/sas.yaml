@@ -3,6 +3,9 @@ kind: Service
 metadata:
   name: sa
   namespace: app
+  annotations:
+    alb.ingress.kubernetes.io/healthcheck-path: /api/sa
+
 spec:
   type: ClusterIP
   selector:
