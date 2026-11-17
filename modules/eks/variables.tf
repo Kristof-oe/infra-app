@@ -27,8 +27,8 @@ variable "vpc_cidr" {
 
 variable "node_group" {
   type = list(object({
-    name = string
-    subnets =list(string)
+    name    = string
+    subnets = list(string)
   }))
 }
 

@@ -1,8 +1,8 @@
 locals {
-  node_groups = { for ng in var.node_group: ng.name => ng }
+  node_groups = { for ng in var.node_group : ng.name => ng }
 }
 resource "aws_eks_node_group" "this" {
-  for_each = local.node_groups
+  for_each     = local.node_groups
   cluster_name = aws_eks_cluster.this.name
 
   node_group_name = each.value.name

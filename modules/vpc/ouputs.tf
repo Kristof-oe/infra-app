@@ -6,7 +6,7 @@
 # }
 
 output "all_subnet_list" {
-   value = [ for key, sn in aws_subnet.this: { name = key, val = sn } ]
+  value = [for key, sn in aws_subnet.this : { name = key, val = sn }]
 }
 
 output "vpc" {

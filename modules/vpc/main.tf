@@ -39,7 +39,7 @@ resource "aws_subnet" "this" {
     # "kubernetes.io/cluster${var.eks_cluster_name}" = "shared"
     },
     each.value.type == "public" ? { "kubernetes.io/role/elb" = "1" } : { "kubernetes.io/role/internal-elb" = "1" }
-    , 
+    ,
     { "kubernetes.io/cluster/eks_task" = "shared" }
   )
 }
